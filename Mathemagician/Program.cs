@@ -10,7 +10,7 @@ namespace Mathemagician
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("I am the Mathgician");
+            Console.WriteLine("I am the Mathemagician");
             Console.WriteLine("What shall I math? \nFibonacci, Primes, or Integers");
             string desiredMaths = Console.ReadLine();
             Console.WriteLine("Ok.  I'm gonna do some " + desiredMaths);
@@ -22,12 +22,47 @@ namespace Mathemagician
             {
                 PrintFibonacciSequence();
             }
-            else
+            else if ("Primes" == desiredMaths)
+            {
+                PrintPrimes();
+            } else
             {
                 Console.WriteLine("Well, Actually...  I lied...");
             }
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
+        }
+
+        private static void PrintPrimes()
+        {
+            // 2, 3, 5, 7, 11, 13, 17, ...
+            List<int> primesList = new List<int>();
+            primesList.Add(2);
+            Console.WriteLine(2);
+            int i = 3;
+            bool prime;
+
+            while (true)
+            {
+                prime = true;
+
+                foreach (int p in primesList)
+                {
+                    if (i % p == 0)
+                    {
+                        prime = false;
+                        break;
+                    }
+                }
+
+                if (prime)
+                {
+                    Console.WriteLine(i);
+                    primesList.Add(i);
+                    System.Threading.Thread.Sleep(300);
+                }
+                i++;
+            }
         }
 
         private static void PrintFibonacciSequence()
@@ -47,12 +82,14 @@ namespace Mathemagician
 
         private static void PrintIntegers()
         {
+            // 1, 2, 3, 4, 5, ...
             int nextInteger = 0;
 
             while (true)
             {
                 nextInteger++;
                 Console.WriteLine(nextInteger);
+                System.Threading.Thread.Sleep(100);
             }
         }
     }
